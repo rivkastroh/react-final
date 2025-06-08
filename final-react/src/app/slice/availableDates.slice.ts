@@ -1,6 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit'
 import type { PayloadAction } from '@reduxjs/toolkit';
-import type { AvailableDates } from '../../types/types';
+import type { AvailableDates} from '../../types/types';
 
 // סלייס זו יחידה שמכילה חלק מסוים מכל הסטור
 // היא אמורה להכיל  את הסטייט ואת הרדיוסרס שלו
@@ -9,14 +9,11 @@ import type { AvailableDates } from '../../types/types';
 export interface DateState {
   availableDates: AvailableDates;
 }
-
 // איתחול של המידע הבסיסי
 const initialState: DateState = {
   availableDates: [
-    "2023-10-02",
-    "2023-10-04",
-    "2023-10-06",
-    "2023-10-07"
+    '2023-10-01T00:00:00',
+    '2023-10-02T00:00:00',
   ]
 }
 
@@ -27,11 +24,8 @@ export const counterSlice = createSlice({
   // כל רדיוסר הוא הגדרה של ארוע שיכול להיות על הסטייט
   // והפונקציה של השינוי
   reducers: {
-    // // הסטייט שמתקבל כפרמטר, הוא אוביקט מהסוג של ה initialState
-    // addTask(state, action: PayloadAction<Task>) {
-    //   // בתוך הרדיוסר יש לבצע את השינוי הנדרש
-    //   state.tasks.push(action.payload);
-    // },
+    // הסטייט שמתקבל כפרמטר, הוא אוביקט מהסוג של ה initialState
+
     // removeTask(state, action: PayloadAction<string>) {
     //   state.tasks = state.tasks.filter(task => task.id !== action.payload);
     // }
@@ -42,6 +36,6 @@ export const counterSlice = createSlice({
 // כאן יש את ההגדרה של ה actions
 // לכל רדיוסר יש אקשין שממופה אליו
 // Action creators are generated for each case reducer function
-// export const { addTask, removeTask } = counterSlice.actions
+//export const { addAppointment } = counterSlice.actions
 
 export default counterSlice.reducer

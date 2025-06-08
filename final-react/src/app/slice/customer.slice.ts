@@ -1,44 +1,38 @@
 import { createSlice } from '@reduxjs/toolkit'
 import type { PayloadAction } from '@reduxjs/toolkit';
-import type { Busines, userLogin } from '../../types/types';
+import type { customer } from '../../types/types';
 
 // סלייס זו יחידה שמכילה חלק מסוים מכל הסטור
 // היא אמורה להכיל  את הסטייט ואת הרדיוסרס שלו
 
 // סוג המידע שהסלייס הזה אמור להכיל
-export interface DateState {
+export interface customerState {
+    customer: customer;
     isConnected: boolean;
-    busines: Busines;
 }
 
 // איתחול של המידע הבסיסי
-const initialState: DateState = {
-    isConnected: false,
-    busines: {
-        name: "hfk lb",
-        address:"dgbufin",
-        email:"k@gf",
-        phone:"0459",
-        username:"gf"
-    }
+const initialState: customerState = {
+    customer: {
+        name: "",
+        email: "",
+        phone: ""
+    },
+    isConnected: false
 }
 
-export const businesSlice = createSlice({
-    name: 'busines',
+export const customerSlice = createSlice({
+    name: 'customer',
     initialState,
     //   הגדרה של רשימת הארועים שיכולים להיות על הסטייט
     // כל רדיוסר הוא הגדרה של ארוע שיכול להיות על הסטייט
     // והפונקציה של השינוי
     reducers: {
-        loginBusines(state , action: PayloadAction<userLogin>){
+        loginCustomer(state , action: PayloadAction<customer>){
+            //יש לאמת מול השרת
+            state.customer = action.payload;
             state.isConnected= true;
-        },
-        updateBusines(state,action:PayloadAction<Busines>){
-            state.busines=action.payload;
         }
-        // removeService(state, action: PayloadAction<string>) {
-        //   state.busines = state.services.filter(service => service.serviceId !== action.payload);
-        // }
     },
 })
 
@@ -46,6 +40,6 @@ export const businesSlice = createSlice({
 // כאן יש את ההגדרה של ה actions
 // לכל רדיוסר יש אקשין שממופה אליו
 // Action creators are generated for each case reducer function
-export const { loginBusines,updateBusines } = businesSlice.actions
+export const { loginCustomer } = customerSlice.actions
 
-export default businesSlice.reducer
+export default customerSlice.reducer

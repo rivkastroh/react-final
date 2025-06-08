@@ -1,7 +1,10 @@
 import { configureStore } from '@reduxjs/toolkit';
 import dateRedusers from './slice/availableDates.slice';
-import serviceRedusers from './slice/services.slice'
+import serviceRedusers from './slice/services.slice';
 import  businesRedusers  from './slice/detaylesBusines.slice';
+import  customerRedusers  from './slice/customer.slice';
+import  appointmentsRedusers  from './slice/appointments.slice';
+
 
 // יצירה של סטור - מעין המיכל שאמור להכיל את כל הדטה - כל הסטייט של רידקס/ של המערכת
 export const store = configureStore({
@@ -9,6 +12,8 @@ export const store = configureStore({
     dateState: dateRedusers,
     serviceState: serviceRedusers,
     businesState: businesRedusers,
+    customerState: customerRedusers,
+    appointmentsState : appointmentsRedusers,
   },
 })
 

@@ -3,10 +3,8 @@ export type AvailableDates = string[]; // מערך של תאריכים זמינ�
 export interface Appointment {
     appointmentId: string;     // מזהה ייחודי של הפגישה
     serviceId: string;         // מזהה השירות שקשור לפגישה
-    customerName: string;      // שם הלקוח
     customerEmail: string;     // דוא"ל של הלקוח
-    date: Date;                // תאריך הפגישה
-    status: string;            // סטטוס הפגישה (כגון: מאושר, ממתין, מבוטל)
+    date: string;                // תאריך הפגישה
 }
 
 export interface Service {
@@ -30,3 +28,11 @@ export interface userLogin {
     name: string,
     password: string
 }
+
+export interface customer {
+    name: string;         // שם הלקוח
+    email: string;        // דוא"ל של הלקוח
+    phone: string;        // טלפון של הלקוח
+}
+export type Status = 'loading' | 'success' | 'error' | 'before';
+

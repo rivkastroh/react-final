@@ -1,41 +1,39 @@
 import { createSlice } from '@reduxjs/toolkit'
 import type { PayloadAction } from '@reduxjs/toolkit';
-import type { Busines, userLogin } from '../../types/types';
+import type { Appointment, Status } from '../../types/types';
 
 // סלייס זו יחידה שמכילה חלק מסוים מכל הסטור
 // היא אמורה להכיל  את הסטייט ואת הרדיוסרס שלו
 
 // סוג המידע שהסלייס הזה אמור להכיל
-export interface DateState {
-    isConnected: boolean;
-    busines: Busines;
+export interface AppointmentsState {
+    status: Status;
+    appointments: Appointment[],
 }
 
 // איתחול של המידע הבסיסי
-const initialState: DateState = {
-    isConnected: false,
-    busines: {
-        name: "hfk lb",
-        address:"dgbufin",
-        email:"k@gf",
-        phone:"0459",
-        username:"gf"
-    }
+const initialState: AppointmentsState = {
+    status: 'before',
+    appointments: [
+        { appointmentId: "0", customerEmail: "vrd@hj",date: "2023-10-10",serviceId:"1"}
+    ],
 }
 
-export const businesSlice = createSlice({
-    name: 'busines',
+export const appointmentsSlice = createSlice({
+    name: 'appointments',
     initialState,
     //   הגדרה של רשימת הארועים שיכולים להיות על הסטייט
     // כל רדיוסר הוא הגדרה של ארוע שיכול להיות על הסטייט
     // והפונקציה של השינוי
     reducers: {
-        loginBusines(state , action: PayloadAction<userLogin>){
-            state.isConnected= true;
+        addAppointment(state, action: PayloadAction<Appointment>) {
+            state.status = 'loading';
+            //לעשות קריאת שרת לראות שהתאריך פנוי ולהוריד אותו מהרשימה
+            //לעדכן את הסטטוס
+            console.log("add appointments")
+            state.appointments.push(action.payload);
+            state.status = 'success';
         },
-        updateBusines(state,action:PayloadAction<Busines>){
-            state.busines=action.payload;
-        }
         // removeService(state, action: PayloadAction<string>) {
         //   state.busines = state.services.filter(service => service.serviceId !== action.payload);
         // }
@@ -46,6 +44,6 @@ export const businesSlice = createSlice({
 // כאן יש את ההגדרה של ה actions
 // לכל רדיוסר יש אקשין שממופה אליו
 // Action creators are generated for each case reducer function
-export const { loginBusines,updateBusines } = businesSlice.actions
+export const { addAppointment } = appointmentsSlice.actions
 
-export default businesSlice.reducer
+export default appointmentsSlice.reducer

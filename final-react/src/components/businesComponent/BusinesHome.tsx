@@ -1,9 +1,10 @@
+import { Menu } from "./Menu";
+
 export const BusinesHome = () => {
     return (
         <div>
             <h1>ברוך הבא לעסק שלך</h1>
-            <p>כאן תוכל לנהל את העסק שלך בקלות וביעילות.</p>
-            <p>השתמש בתפריט כדי לגשת לפיצ'רים השונים.</p>
+            <Menu/>
         </div>
     );
 }

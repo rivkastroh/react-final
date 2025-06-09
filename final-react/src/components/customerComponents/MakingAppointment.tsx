@@ -28,15 +28,15 @@ export const MakingAppointment = () => {
     }
     return <>
         <h1>קביעת תור</h1>
-        {touch && status === 'loading' && <p>טוען...</p>}
-        {touch && status === 'error' && <p>קביעת תאריך נכשלה בחר תאריך אחר</p>}
-        {touch && status === 'success' && <p>התור נקבע בהצלחה!</p>}
+        {touch && status === 'loading' && <p style={{ color: "#6366f1" }}>טוען...</p>}
+        {touch && status === 'error' && <p style={{ color: "#ef4444" }}>קביעת תאריך נכשלה בחר תאריך אחר</p>}
+        {touch && status === 'success' && <p style={{ color: "#22c55e" }}>התור נקבע בהצלחה!</p>}
         {!isConnected && <CustomerDetails />}
         <h2>בחר תאריך זמין:</h2>
-        <ul>
+        <ul style={{ gap: "0.5em" }}>
             {availableDates.map((date, index) => (
                 <li key={index}>
-                    <button onClick={() => making(date)}>{date}</button>
+                    <button style={{ minWidth: "120px" }} onClick={() => making(date)}>{date}</button>
                 </li>
             ))}
         </ul>

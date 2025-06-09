@@ -5,6 +5,7 @@ import { ShowServices } from './components/customerComponents/ShowServices'
 function App() {
   return (
     <>
+      <div className="logo"></div>
       <h1>ברוכים הבאים</h1>
       <BusinessDetails />
       <ShowServices />

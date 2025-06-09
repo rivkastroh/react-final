@@ -1,0 +1,21 @@
+nav {
+  margin: 1.5em 0 2em 0;
+  display: flex;
+  justify-content: center;
+  gap: 2em;
+}
+
+nav a {
+  color: #4f46e5;
+  font-weight: 600;
+  font-size: 1.1em;
+  padding: 0.5em 1.2em;
+  border-radius: 20px;
+  transition: background 0.2s, color 0.2s;
+  text-decoration: none;
+}
+
+nav a.active, nav a:hover {
+  background: #e0e7ff;
+  color: #312e81;
+}

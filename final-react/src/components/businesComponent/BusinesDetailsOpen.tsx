@@ -14,15 +14,16 @@ export const BusinesDetailsOpen = () => {
     }
     return <>
         <Menu />
-        <h2>פרטי העסק</h2>
-        <p>שם: {busines.name}</p>
-        <p>כתובת: {busines.address}</p>
-        <p>אימייל: {busines.email}</p>
-        <p>טלפון: {busines.phone}</p>
-        <p>שם מנהל: {busines.username}</p>
-        <button onClick={editF}>עריכה</button>
-        {edit && <BusinesEdit />}
-
+        <div className="card">
+            <h2>פרטי העסק</h2>
+            <p>שם: {busines.name}</p>
+            <p>כתובת: {busines.address}</p>
+            <p>אימייל: {busines.email}</p>
+            <p>טלפון: {busines.phone}</p>
+            <p>שם מנהל: {busines.username}</p>
+            <button onClick={editF}>עריכה</button>
+            {edit && <BusinesEdit />}
+        </div>
         <ServicesEdit />
     </>
 }

@@ -15,7 +15,9 @@ export interface AppointmentsState {
 const initialState: AppointmentsState = {
     status: 'before',
     appointments: [
-        { appointmentId: "0", customerEmail: "vrd@hj",date: "2023-10-10",serviceId:"1"}
+        { appointmentId: "0", customerEmail: "vrd@hj",date: "2023-10-10",serviceId:"1"},
+        { appointmentId: "1", customerEmail: "vrd@hj",date: "2023-10-10",serviceId:"1"},
+        { appointmentId: "2", customerEmail: "vrd@hj",date: "2023-10-10",serviceId:"1"}
     ],
 }
 

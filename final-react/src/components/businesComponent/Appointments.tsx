@@ -5,7 +5,7 @@ import { Menu } from "./Menu";
 export const Appointments = () => {
     const appointments = useSelector((state: RootState) => state.appointmentsState.appointments);
 
-    const sortedAppointments = appointments.sort((a, b) => new Date(a.date).getTime() - new Date(b.date).getTime());
+    const sortedAppointments = appointments.slice().sort((a, b) => new Date(a.date).getTime() - new Date(b.date).getTime());
 
     const today = new Date();
     const weekLater = new Date(today);
@@ -16,21 +16,21 @@ export const Appointments = () => {
             <Menu />
             {sortedAppointments.map((appointment) => {
                 const appointmentDate = new Date(appointment.date);
-                let className = '';
+                let className = 'appointment-card';
 
                 if (appointmentDate.toDateString() === today.toDateString()) {
-                    className = 'red'; // פגישות להיום
+                    className += ' red';
                 } else if (appointmentDate <= weekLater) {
-                    className = 'orange'; // פגישות לשבוע הקרוב
+                    className += ' orange';
                 } else {
-                    className = 'green'; // פגישות רחוקות יותר
+                    className += ' green';
                 }
 
                 return (
                     <div key={appointment.appointmentId} className={className}>
-                        <p>{appointment.date}תאריך:</p>
-                        <p>{appointment.customerEmail}אמייל לקוח:</p>
-                        <p>{appointment.serviceId}שרות: </p>
+                        <p>תאריך: {appointment.date}</p>
+                        <p>אמייל לקוח: {appointment.customerEmail}</p>
+                        <p>שרות: {appointment.serviceId}</p>
                     </div>
                 );
             })}

@@ -1,21 +1,30 @@
-import { createSlice } from '@reduxjs/toolkit'
+import { createAsyncThunk, createSlice } from '@reduxjs/toolkit'
 import type { PayloadAction } from '@reduxjs/toolkit';
-import type { AvailableDates} from '../../types/types';
+import type { AvailableDates } from '../../types/types';
+import { serverInstance } from '../../serverInstance';
 
 // סלייס זו יחידה שמכילה חלק מסוים מכל הסטור
 // היא אמורה להכיל  את הסטייט ואת הרדיוסרס שלו
 
 // סוג המידע שהסלייס הזה אמור להכיל
 export interface DateState {
-  availableDates: AvailableDates;
+  availableDates: AvailableDates | null;
 }
 // איתחול של המידע הבסיסי
 const initialState: DateState = {
-  availableDates: [
-    '2023-10-01T00:00:00',
-    '2023-10-02T00:00:00',
-  ]
+  availableDates: null
 }
+const fetchAvailable = createAsyncThunk(
+  'appoitments-available',
+  async () => {
+    try {
+      const responce = await serverInstance.get(`/appoitments-available`);
+      return responce.data;
+    } catch (error) {
+      return error;
+    }
+  }
+);
 
 export const counterSlice = createSlice({
   name: 'availableDates',
@@ -24,12 +33,12 @@ export const counterSlice = createSlice({
   // כל רדיוסר הוא הגדרה של ארוע שיכול להיות על הסטייט
   // והפונקציה של השינוי
   reducers: {
-    // הסטייט שמתקבל כפרמטר, הוא אוביקט מהסוג של ה initialState
-
-    // removeTask(state, action: PayloadAction<string>) {
-    //   state.tasks = state.tasks.filter(task => task.id !== action.payload);
-    // }
   },
+  extraReducers: (builder) => {
+    builder.addCase(fetchAvailable.fulfilled, (state, action: PayloadAction<AvailableDates>) => {
+      state.availableDates = action.payload;
+    })
+  }
 })
 
 
@@ -39,3 +48,4 @@ export const counterSlice = createSlice({
 //export const { addAppointment } = counterSlice.actions
 
 export default counterSlice.reducer
+export { fetchAvailable }

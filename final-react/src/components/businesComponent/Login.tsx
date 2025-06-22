@@ -1,33 +1,36 @@
 import { useDispatch, useSelector } from "react-redux";
-import type { RootState } from "../../app/store";
-import { loginBusines } from "../../app/slice/detaylesBusines.slice";
+import type { AppDispatch, RootState } from "../../app/store";
+import { fetchBusines, loginBusines } from "../../app/slice/detaylesBusines.slice";
 import { useNavigate } from "react-router-dom";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 export const LoginAdmin = () => {
 
-    const dispatch = useDispatch();
+    const dispatch: AppDispatch = useDispatch(); // טיפוס ה-Dispatch
     const busines = useSelector((state: RootState) => state.businesState.isConnected);
+    const token = useSelector((state: RootState) => state.businesState.token);
     const navigate = useNavigate();
     const [error, setError] = useState(false);
 
     const login = async (e: any) => {
+        setError(false)
         e.preventDefault();
-        await dispatch(loginBusines({ name: e.target.name.value, password: e.target.password.value }));
-        if (busines) {
+        await dispatch(loginBusines({ email: e.target.email.value, password: e.target.password.value }));
+    }
+    useEffect(() => {
+        if (token) {
             navigate("/admin/home");
-        }
-        else {
+        } else if (error) {
             setError(true);
         }
-    }
+    }, [token, dispatch, navigate]);
     if (busines) {
         navigate("/admin/home");
     }
     return <>
         <h1>ברוך הבא</h1>
         <form onSubmit={login}>
-            <input type="text" placeholder="שם" name="name" />
+            <input type="text" placeholder="אמייל" name="email" />
             <input type="password" placeholder="סיסמה" name="password" />
             <button type="submit">כניסה</button>
         </form>

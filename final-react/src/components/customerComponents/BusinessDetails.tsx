@@ -6,11 +6,11 @@ export const BusinessDetails = () => {
     return <>
         <div className="card">
             <h2>פרטי העסק</h2>
-            <p>שם: {busines.name}</p>
-            <p>כתובת: {busines.address}</p>
-            <p>אימייל: {busines.email}</p>
-            <p>טלפון: {busines.phone}</p>
-            <p>שם מנהל: {busines.username}</p>
+            <p>שם: {busines?.name}</p>
+            <p>כתובת: {busines?.address}</p>
+            <p>אימייל: {busines?.email}</p>
+            <p>טלפון: {busines?.phone}</p>
+            <p>שם מנהל: {busines?.username}</p>
         </div>
     </>
 }

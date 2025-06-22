@@ -7,7 +7,7 @@ function App() {
     <>
       <div className="logo"></div>
       <h1>ברוכים הבאים</h1>
-      <BusinessDetails />
+      {/* <BusinessDetails /> */}
       <ShowServices />
     </>
   )

@@ -1,11 +1,20 @@
-import { useSelector } from "react-redux"
-import type { RootState } from "../../app/store"
+import { useDispatch, useSelector } from "react-redux"
+import type { AppDispatch, RootState } from "../../app/store"
 import { Menu } from "./Menu";
+import { fetchData } from "../../app/slice/appointments.slice";
+import { useEffect } from "react";
 
 export const Appointments = () => {
     const appointments = useSelector((state: RootState) => state.appointmentsState.appointments);
+    const dispatch: AppDispatch = useDispatch();
 
-    const sortedAppointments = appointments.slice().sort((a, b) => new Date(a.date).getTime() - new Date(b.date).getTime());
+    let sortedAppointments: any[] = [];
+    // useEffect()
+    if (!appointments) {
+        dispatch(fetchData());
+    }
+    else
+        sortedAppointments = appointments?.slice().sort((a, b) => new Date(a.date).getTime() - new Date(b.date).getTime());
 
     const today = new Date();
     const weekLater = new Date(today);
@@ -14,7 +23,7 @@ export const Appointments = () => {
     return (
         <div>
             <Menu />
-            {sortedAppointments.map((appointment) => {
+            {sortedAppointments?.map((appointment) => {
                 const appointmentDate = new Date(appointment.date);
                 let className = 'appointment-card';
 

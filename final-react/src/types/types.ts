@@ -25,14 +25,13 @@ export interface Busines {
 }
 
 export interface userLogin {
-    name: string,
+    email: string,
     password: string
 }
 
 export interface customer {
     name: string;         // שם הלקוח
     email: string;        // דוא"ל של הלקוח
-    phone: string;        // טלפון של הלקוח
 }
 export type Status = 'loading' | 'success' | 'error' | 'before';
 
